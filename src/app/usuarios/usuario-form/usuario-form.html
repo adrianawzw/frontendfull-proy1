@@ -1,0 +1,95 @@
+<!-- <h2>Nuevo Usuario</h2>
+
+<form [formGroup]="formUsuario" (submit)="guardarUsuario()">
+
+  <input
+    type="text"
+    placeholder="Nombre"
+    formControlName="nombre"
+  />
+
+  <input
+    type="email"
+    placeholder="Email"
+    formControlName="email"
+  />
+
+  <input
+    type="password"
+    placeholder="Password"
+    formControlName="password"
+  />
+
+  <button type="submit">Guardar</button>
+
+</form>
+
+@if (error) {
+  <p>{{ error }}</p>
+}
+ -->
+
+<section style="display:flex; justify-content: space-between; gap: 2rem;">
+
+  <div>
+    <h2>Listado de usuarios</h2>
+    <hr>
+
+    @if (usuarios$ | async; as usuarios) {
+      <h4>Cantidad: {{ usuarios.length }}</h4>
+
+      <table border="1">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th colspan="2">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (u of usuarios; track u.id) {
+            <tr>
+              <td>{{ u.id }}</td>
+              <td>{{ u.nombre }}</td>
+              <td>{{ u.email }}</td>
+              <td><button (click)="editarUsuario(u)">Editar</button></td>
+              <td><button (click)="eliminarUsuario(u.id!)">Eliminar</button></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+
+  <div>
+    <h2>Formulario Usuario</h2>
+
+    <form [formGroup]="formUsuario" (submit)="guardarUsuario()">
+
+      <input type="hidden" formControlName="id">
+
+      <div style="margin-top: 1rem;">
+        <label>Nombre:</label>
+        <input type="text" formControlName="nombre" placeholder="nombre">
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <label>Email:</label>
+        <input type="email" formControlName="email" placeholder="email">
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <label>Password:</label>
+        <input type="password" formControlName="password" placeholder="password">
+      </div>
+
+      <button style="margin-top: 2rem;">
+        Guardar
+      </button>
+
+    </form>
+  </div>
+
+</section>

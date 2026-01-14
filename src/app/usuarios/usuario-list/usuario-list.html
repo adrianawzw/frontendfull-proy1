@@ -1,0 +1,31 @@
+<h2>Lista de usuarios</h2>
+
+<a routerLink="/usuarios/nuevo">Nuevo usuario</a>
+
+@if (usuarios$ |async; as users) {
+<table border="1">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>nombre</th>
+      <th>email</th>
+      <th>Eliminar?</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (u of users; track u.id) {
+    <tr>
+      <td>{{ u.id }}</td>
+      <td>{{ u.nombre }}</td>
+      <td>{{ u.email }}</td>
+      <td>
+        <button type="button" (click)="eliminarUsuario(u.id)">Eliminar</button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}@else {
+<p>No hay datos...</p>
+}

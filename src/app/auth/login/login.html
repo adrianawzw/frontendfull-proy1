@@ -1,0 +1,13 @@
+<h2>Login - Completar campos</h2>
+
+<form [formGroup]="formLogin" (submit)="login()">
+  <input type="email" formControlName="email" placeholder="Email">
+  <input type="password" formControlName="password" placeholder="Password">
+
+  <button type="submit">Iniciar</button>
+</form>
+
+@if (error) {
+  <p>{{error}}</p>
+}
+
